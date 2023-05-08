@@ -1,8 +1,12 @@
+"use client";
+
 import Image from "next/image";
 import legoman from "/public/Icons/legoman.png";
 import legoface from "/public/Icons/lego-3.jpeg";
 import profileImage from "/public/Icons/ic_user.svg";
 import cartIcon from "/public/Icons/ic_cart.svg";
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
 export default function Home() {
   return (
@@ -41,20 +45,6 @@ export default function Home() {
                 />
               </svg>
             </button>
-          </div>
-          <div className="hidden lg:flex lg:gap-x-12">
-            <a
-              href="#"
-              className="text-sm font-semibold leading-6 text-gray-900"
-            >
-              Features
-            </a>
-            <a
-              href="#"
-              className="text-sm font-semibold leading-6 text-gray-900"
-            >
-              Marketplace
-            </a>
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             <a
@@ -167,73 +157,160 @@ export default function Home() {
 
       <div className="flex mt-[160px]">
         {/* Sidebar */}
-        <div className="flex flex-col items-center justify-center border-r border-slate w-[400px] h-full">
-          {/* Sidebar Content */}
-          <div className=" flex mx-4 justify-center w-80 h-[115px] p-4 overflow-y-auto">
-            <div className="pb-4 capitalize gap-4 flex items-center bg-slate-100 rounded-lg w-[255px] h-[75px]">
-              <div className="flex items-center justify-center w-1/2 h-[55px] mt-4">
-                <Image
-                  src={legoface}
-                  width={50}
-                  height={50}
-                  alt=""
-                  className="rounded-full"
-                />
+        <div className="w-[400px]">
+          <div className="flex flex-col items-center  border-r border-slate min-h-screen h-full ">
+            {/* Sidebar Content */}
+            <div className=" flex mx-4 justify-center w-80 h-[115px] p-4 overflow-y-auto">
+              <div className="pb-4 capitalize gap-4 flex items-center bg-slate-100 rounded-lg w-[255px] h-[75px]">
+                <div className="flex items-center justify-center w-1/2 h-[55px] mt-4">
+                  <Image
+                    src={legoface}
+                    width={50}
+                    height={50}
+                    alt=""
+                    className="rounded-full"
+                  />
+                </div>
+                <div className="flex items-center w-full h-[55px] mt-4">
+                  <h1 className="text-sm font-semibold">Isaac Yanez</h1>
+                </div>
               </div>
-              <div className="flex items-center w-full h-[55px] mt-4">
-                <h1 className="text-sm font-semibold">Isaac Yanez</h1>
-              </div>
             </div>
-          </div>
-          {/* Sidebar Content */}
-          <div className="flex items-center mx-4 mt-9 w-1/2 h-[50px] w-[250px] rounded-md transition duration-300 ease-in-out hover:bg-slate-200 cursor-pointer">
-            <div className="w-[50px] flex items-center justify-center">
-              <Image src={profileImage} width={30} height={30} alt="" />
-            </div>
-            <div className="ml-5">
-              <a className="">Profile</a>
-            </div>
-          </div>
-          <div className="flex items-center mx-4 mt-4 w-1/2 h-[50px] w-[250px] rounded-md transition duration-300 ease-in-out hover:bg-slate-200 cursor-pointer">
-            <div className="flex">
+            {/* Sidebar Content */}
+            <div className="flex items-center mx-4 mt-9 w-1/2 h-[50px] w-[250px] rounded-md transition duration-300 ease-in-out hover:bg-slate-200 cursor-pointer">
               <div className="w-[50px] flex items-center justify-center">
-                <Image src={cartIcon} width={30} height={30} alt="" />
+                <Image src={profileImage} width={30} height={30} alt="" />
               </div>
               <div className="ml-5">
-                <p className="">More text</p>
+                <a className="">Profile</a>
+              </div>
+            </div>
+            <div className="flex items-center mx-4 mt-4 w-1/2 h-[50px] w-[250px] rounded-md transition duration-300 ease-in-out hover:bg-slate-200 cursor-pointer">
+              <div className="flex">
+                <div className="w-[50px] flex items-center justify-center">
+                  <Image src={cartIcon} width={30} height={30} alt="" />
+                </div>
+                <div className="ml-5">
+                  <p className="">Market Place</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="flex flex-wrap w-full">
-          <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-6 py-4">
-            <div className="bg-white shadow-lg rounded-lg p-6">
-              <h1 className="text-xl font-bold">Card Title</h1>
-              <p className="text-gray-700 mt-2">Card content goes here</p>
+        <div className="w-full ">
+          <div className="p-6 justify-between flex items-center">
+            <div className="flex flex-start">
+              <h1 className="text-xl font-semibold">Isaac's Legos</h1>
             </div>
+            <ToggleButtonGroup color="primary" exclusive aria-label="Platform">
+              <ToggleButton value="web">Forsale</ToggleButton>
+              <ToggleButton value="android">Sold</ToggleButton>
+            </ToggleButtonGroup>
           </div>
-          <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-6 py-4">
-            <div className="bg-white shadow-lg rounded-lg p-6">
-              <h1 className="text-xl font-bold">Card Title</h1>
-              <p className="text-gray-700 mt-2">Card content goes here</p>
+          <div className="flex flex-wrap w-full">
+            <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-6 py-4">
+              <div className="bg-white shadow-lg rounded-lg p-6">
+                <div className="relative w-full h-40 mb-4">
+                  <img
+                    src="https://via.placeholder.com/300x200"
+                    alt="Card image"
+                    className="rounded-t-lg"
+                  />
+                </div>
+                <h1 className="text-xl font-bold">Card Title</h1>
+                <p className="text-gray-700 mt-2">Card content goes here</p>
+              </div>
             </div>
-          </div>
-          <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-6 py-4">
-            <div className="bg-white shadow-lg rounded-lg p-6">
-              <h1 className="text-xl font-bold">Card Title</h1>
-              <p className="text-gray-700 mt-2">Card content goes here</p>
+            <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-6 py-4">
+              <div className="bg-white shadow-lg rounded-lg p-6">
+                <div className="relative w-full h-40 mb-4">
+                  <img
+                    src="https://via.placeholder.com/300x200"
+                    alt="Card image"
+                    className="rounded-t-lg"
+                  />
+                </div>
+                <h1 className="text-xl font-bold">Card Title</h1>
+                <p className="text-gray-700 mt-2">Card content goes here</p>
+              </div>
             </div>
-          </div>
-          <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-6 py-4">
-            <div className="bg-white shadow-lg rounded-lg p-6">
-              <h1 className="text-xl font-bold">Card Title</h1>
-              <p className="text-gray-700 mt-2">Card content goes here</p>
+            <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-6 py-4">
+              <div className="bg-white shadow-lg rounded-lg p-6">
+                <div className="relative w-full h-40 mb-4">
+                  <img
+                    src="https://via.placeholder.com/300x200"
+                    alt="Card image"
+                    className="rounded-t-lg"
+                  />
+                </div>
+                <h1 className="text-xl font-bold">Card Title</h1>
+                <p className="text-gray-700 mt-2">Card content goes here</p>
+              </div>
             </div>
-          </div>
-          <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-6 py-4">
-            <div className="bg-white shadow-lg rounded-lg p-6">
-              <h1 className="text-xl font-bold">Card Title</h1>
-              <p className="text-gray-700 mt-2">Card content goes here</p>
+            <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-6 py-4">
+              <div className="bg-white shadow-lg rounded-lg p-6">
+                <div className="relative w-full h-40 mb-4">
+                  <img
+                    src="https://via.placeholder.com/300x200"
+                    alt="Card image"
+                    className="rounded-t-lg"
+                  />
+                </div>
+                <h1 className="text-xl font-bold">Card Title</h1>
+                <p className="text-gray-700 mt-2">Card content goes here</p>
+              </div>
+            </div>
+            <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-6 py-4">
+              <div className="bg-white shadow-lg rounded-lg p-6">
+                <div className="relative w-full h-40 mb-4">
+                  <img
+                    src="https://via.placeholder.com/300x200"
+                    alt="Card image"
+                    className="rounded-t-lg"
+                  />
+                </div>
+                <h1 className="text-xl font-bold">Card Title</h1>
+                <p className="text-gray-700 mt-2">Card content goes here</p>
+              </div>
+            </div>
+            <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-6 py-4">
+              <div className="bg-white shadow-lg rounded-lg p-6">
+                <div className="relative w-full h-40 mb-4">
+                  <img
+                    src="https://via.placeholder.com/300x200"
+                    alt="Card image"
+                    className="rounded-t-lg"
+                  />
+                </div>
+                <h1 className="text-xl font-bold">Card Title</h1>
+                <p className="text-gray-700 mt-2">Card content goes here</p>
+              </div>
+            </div>
+            <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-6 py-4">
+              <div className="bg-white shadow-lg rounded-lg p-6">
+                <div className="relative w-full h-40 mb-4">
+                  <img
+                    src="https://via.placeholder.com/300x200"
+                    alt="Card image"
+                    className="rounded-t-lg"
+                  />
+                </div>
+                <h1 className="text-xl font-bold">Card Title</h1>
+                <p className="text-gray-700 mt-2">Card content goes here</p>
+              </div>
+            </div>
+            <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-6 py-4">
+              <div className="bg-white shadow-lg rounded-lg p-6">
+                <div className="relative w-full h-40 mb-4">
+                  <img
+                    src="https://via.placeholder.com/300x200"
+                    alt="Card image"
+                    className="rounded-t-lg"
+                  />
+                </div>
+                <h1 className="text-xl font-bold">Card Title</h1>
+                <p className="text-gray-700 mt-2">Card content goes here</p>
+              </div>
             </div>
           </div>
         </div>
