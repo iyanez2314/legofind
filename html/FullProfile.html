@@ -7,13 +7,11 @@ import profileImage from "/public/Icons/ic_user.svg";
 import cartIcon from "/public/Icons/ic_cart.svg";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import Link from "next/link";
-import PlusSign from "/public/Icons/plus-sign.png";
 
 export default function Home() {
   return (
     <div className="bg-white min-h-screen h-full">
-      <header className="absolute inset-x-0 top-0 z-40">
+      <header className="absolute inset-x-0 top-0 z-50">
         <nav
           className="flex items-center justify-between p-6 lg:px-8"
           aria-label="Global"
@@ -59,8 +57,8 @@ export default function Home() {
         </nav>
 
         <div className="lg:hidden" role="dialog" aria-modal="true">
-          <div className="fixed inset-0 z-40"></div>
-          <div className="fixed inset-y-0 right-0 z-40 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+          <div className="fixed inset-0 z-50"></div>
+          <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
               <a href="#" className="-m-1.5 p-1.5">
                 <span className="sr-only text-black">Your Company</span>
@@ -157,34 +155,12 @@ export default function Home() {
       </div>
       {/* Content Goes here */}
 
-      <div className="flex mt-[150px]">
+      <div className="flex mt-[100px]">
         {/* Sidebar */}
-        <div className="w-[400px] z-50  ">
+        <div className="w-[400px]">
           <div className="flex flex-col items-center  border-r border-slate min-h-screen h-full ">
             {/* Sidebar Content */}
-            {/* Sidebar Content */}
-            <div className="w-80 h-[500px] p-4 overflow-y-auto -mt-3">
-              <div className="text-black border-b pb-4 flex flex-col mt-3 capitalize">
-                <h3 className="text-2xl font-bold mb-4 border-b ">Filters</h3>
-                <h3 className="text-xl font-bold mb-4">Lego Types</h3>
-                <p className="cursor-pointer">Star wars</p>
-                <p>Harry Potter</p>
-                <p>Technic</p>
-              </div>
-              <div className="text-black border-b pb-4 flex flex-col mt-3">
-                <h3 className="text-xl font-bold mb-4">Price Ranges</h3>
-                <p>$0-$50</p>
-                <p>$50-$100</p>
-                <p>$100+</p>
-              </div>
-              <div className="text-black border-b pb-4 flex flex-col mt-3 capitalize">
-                <h3 className="text-xl font-bold mb-4">Extra</h3>
-                <p>Fully built</p>
-                <p>In Box Sealed</p>
-                <p>Open Box</p>
-              </div>
-            </div>
-            <div className=" flex mx-4 justify-center w-80 h-[115px] p-4 overflow-y-auto mt-6">
+            <div className=" flex mx-4 justify-center w-80 h-[115px] p-4 overflow-y-auto">
               <div className="pb-4 capitalize gap-4 flex items-center bg-slate-100 rounded-lg w-[255px] h-[75px]">
                 <div className="flex items-center justify-center w-1/2 h-[55px] mt-4">
                   <Image
@@ -192,7 +168,7 @@ export default function Home() {
                     width={50}
                     height={50}
                     alt=""
-                    className="rounded-full cursor-pointer"
+                    className="rounded-full"
                   />
                 </div>
                 <div className="flex items-center w-full h-[55px] mt-4">
@@ -200,101 +176,140 @@ export default function Home() {
                 </div>
               </div>
             </div>
+            {/* Sidebar Content */}
+            <div className="flex items-center mx-4 mt-9 w-1/2 h-[50px] w-[250px] rounded-md transition duration-300 ease-in-out hover:bg-slate-200 cursor-pointer">
+              <div className="w-[50px] flex items-center justify-center">
+                <Image src={profileImage} width={30} height={30} alt="" />
+              </div>
+              <div className="ml-5">
+                <a className="">Profile</a>
+              </div>
+            </div>
+            <div className="flex items-center mx-4 mt-4 w-1/2 h-[50px] w-[250px] rounded-md transition duration-300 ease-in-out hover:bg-slate-200 cursor-pointer">
+              <div className="flex">
+                <div className="w-[50px] flex items-center justify-center">
+                  <Image src={cartIcon} width={30} height={30} alt="" />
+                </div>
+                <div className="ml-5">
+                  <p className="">Market Place</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-
-        <div className=" z-50 w-full ">
+        <div className="w-full ">
           <div className="p-6 justify-between flex items-center">
             <div className="flex flex-start">
-              <h1 className="text-xl font-semibold">Marketplace</h1>
+              <h1 className="text-xl font-semibold">Isaac's Legos</h1>
             </div>
-            <div>
-              <button className="bg-purple-300 rounded p-2 cursor-pointer">
-                <span>
-                  <Image src={PlusSign} width={30} height={30} alt="" />
-                </span>
-              </button>
-            </div>
+            <ToggleButtonGroup color="primary" exclusive aria-label="Platform">
+              <ToggleButton value="web">Forsale</ToggleButton>
+              <ToggleButton value="android">Sold</ToggleButton>
+            </ToggleButtonGroup>
           </div>
           <div className="flex flex-wrap w-full">
-            <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-6 py-4 cursor-pointer">
-              <div className="bg-white shadow-lg rounded-lg">
-                <div className="relative w-full aspect-w-3 aspect-h-2 mb-4">
+            <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-6 py-4">
+              <div className="bg-white shadow-lg rounded-lg p-6">
+                <div className="relative w-full h-40 mb-4">
                   <img
                     src="https://via.placeholder.com/300x200"
                     alt="Card image"
-                    className="rounded-t-lg w-full h-full object-cover"
+                    className="rounded-t-lg"
                   />
                 </div>
-                <div className="p-6 mt-6">
-                  <h1 className="text-xl font-bold">Card Title</h1>
-                  <p className="text-gray-700 mt-2">Card content goes here</p>
-                  <p className="text-gray-700 mt-2 text-sm">$90.00</p>
-                </div>
+                <h1 className="text-xl font-bold">Card Title</h1>
+                <p className="text-gray-700 mt-2">Card content goes here</p>
               </div>
             </div>
             <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-6 py-4">
-              <div className="bg-white shadow-lg rounded-lg">
-                <div className="relative w-full aspect-w-3 aspect-h-2 mb-4">
+              <div className="bg-white shadow-lg rounded-lg p-6">
+                <div className="relative w-full h-40 mb-4">
                   <img
                     src="https://via.placeholder.com/300x200"
                     alt="Card image"
-                    className="rounded-t-lg w-full h-full object-cover"
+                    className="rounded-t-lg"
                   />
                 </div>
-                <div className="p-6 mt-6">
-                  <h1 className="text-xl font-bold">Card Title</h1>
-                  <p className="text-gray-700 mt-2">Card content goes here</p>
-                  <p className="text-gray-700 mt-2 text-sm">$90.00</p>
-                </div>
+                <h1 className="text-xl font-bold">Card Title</h1>
+                <p className="text-gray-700 mt-2">Card content goes here</p>
               </div>
             </div>
             <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-6 py-4">
-              <div className="bg-white shadow-lg rounded-lg">
-                <div className="relative w-full aspect-w-3 aspect-h-2 mb-4">
+              <div className="bg-white shadow-lg rounded-lg p-6">
+                <div className="relative w-full h-40 mb-4">
                   <img
                     src="https://via.placeholder.com/300x200"
                     alt="Card image"
-                    className="rounded-t-lg w-full h-full object-cover"
+                    className="rounded-t-lg"
                   />
                 </div>
-                <div className="p-6 mt-6">
-                  <h1 className="text-xl font-bold">Card Title</h1>
-                  <p className="text-gray-700 mt-2">Card content goes here</p>
-                  <p className="text-gray-700 mt-2 text-sm">$90.00</p>
-                </div>
+                <h1 className="text-xl font-bold">Card Title</h1>
+                <p className="text-gray-700 mt-2">Card content goes here</p>
               </div>
             </div>
             <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-6 py-4">
-              <div className="bg-white shadow-lg rounded-lg">
-                <div className="relative w-full aspect-w-3 aspect-h-2 mb-4">
+              <div className="bg-white shadow-lg rounded-lg p-6">
+                <div className="relative w-full h-40 mb-4">
                   <img
                     src="https://via.placeholder.com/300x200"
                     alt="Card image"
-                    className="rounded-t-lg w-full h-full object-cover"
+                    className="rounded-t-lg"
                   />
                 </div>
-                <div className="p-6 mt-6">
-                  <h1 className="text-xl font-bold">Card Title</h1>
-                  <p className="text-gray-700 mt-2">Card content goes here</p>
-                  <p className="text-gray-700 mt-2 text-sm">$90.00</p>
-                </div>
+                <h1 className="text-xl font-bold">Card Title</h1>
+                <p className="text-gray-700 mt-2">Card content goes here</p>
               </div>
             </div>
             <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-6 py-4">
-              <div className="bg-white shadow-lg rounded-lg">
-                <div className="relative w-full aspect-w-3 aspect-h-2 mb-4">
+              <div className="bg-white shadow-lg rounded-lg p-6">
+                <div className="relative w-full h-40 mb-4">
                   <img
                     src="https://via.placeholder.com/300x200"
                     alt="Card image"
-                    className="rounded-t-lg w-full h-full object-cover"
+                    className="rounded-t-lg"
                   />
                 </div>
-                <div className="p-6 mt-6">
-                  <h1 className="text-xl font-bold">Card Title</h1>
-                  <p className="text-gray-700 mt-2">Card content goes here</p>
-                  <p className="text-gray-700 mt-2 text-sm">$90.00</p>
+                <h1 className="text-xl font-bold">Card Title</h1>
+                <p className="text-gray-700 mt-2">Card content goes here</p>
+              </div>
+            </div>
+            <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-6 py-4">
+              <div className="bg-white shadow-lg rounded-lg p-6">
+                <div className="relative w-full h-40 mb-4">
+                  <img
+                    src="https://via.placeholder.com/300x200"
+                    alt="Card image"
+                    className="rounded-t-lg"
+                  />
                 </div>
+                <h1 className="text-xl font-bold">Card Title</h1>
+                <p className="text-gray-700 mt-2">Card content goes here</p>
+              </div>
+            </div>
+            <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-6 py-4">
+              <div className="bg-white shadow-lg rounded-lg p-6">
+                <div className="relative w-full h-40 mb-4">
+                  <img
+                    src="https://via.placeholder.com/300x200"
+                    alt="Card image"
+                    className="rounded-t-lg"
+                  />
+                </div>
+                <h1 className="text-xl font-bold">Card Title</h1>
+                <p className="text-gray-700 mt-2">Card content goes here</p>
+              </div>
+            </div>
+            <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-6 py-4">
+              <div className="bg-white shadow-lg rounded-lg p-6">
+                <div className="relative w-full h-40 mb-4">
+                  <img
+                    src="https://via.placeholder.com/300x200"
+                    alt="Card image"
+                    className="rounded-t-lg"
+                  />
+                </div>
+                <h1 className="text-xl font-bold">Card Title</h1>
+                <p className="text-gray-700 mt-2">Card content goes here</p>
               </div>
             </div>
           </div>
