@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import legoman from "/public/Icons/legoman.png";
+import AuthModal from "./AuthModal";
 
 export default function NavBar() {
   return (
@@ -37,9 +38,7 @@ export default function NavBar() {
         </button>
       </div>
       <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-        <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-          Log in <span aria-hidden="true">&rarr;</span>
-        </a>
+        <AuthModal isSignin={true} /> <span aria-hidden="true">&rarr;</span>
       </div>
     </nav>
   );

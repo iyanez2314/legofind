@@ -1,4 +1,5 @@
 import React from "react";
+import AuthModal from "./AuthModal";
 
 export default function HomePageContent() {
   return (
@@ -14,12 +15,7 @@ export default function HomePageContent() {
           aliqua.
         </p>
         <div className="mt-10 flex items-center justify-center gap-x-6">
-          <a
-            href="#"
-            className="rounded-md bg-yellow-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-yellow-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-all ease-in-out duration-200"
-          >
-            Sign up for free!
-          </a>
+          <AuthModal isSignin={false} />
         </div>
       </div>
     </div>
