@@ -15,7 +15,7 @@ export default function UserProfile() {
       <div className="flex mt-[100px]">
         <SidebarNav />
         <div className="w-full ">
-          <FilterNav />
+          <FilterNav page={false} />
           <div className="flex flex-wrap w-full">
             {Array(10)
               .fill(0)
