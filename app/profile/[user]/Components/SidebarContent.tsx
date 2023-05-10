@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 function SidebarContent({ content, icon }: { content: string; icon: string }) {
   return (
@@ -8,7 +9,9 @@ function SidebarContent({ content, icon }: { content: string; icon: string }) {
         <Image src={icon} width={30} height={30} alt="" />
       </div>
       <div className="ml-5">
-        <a className="">{content}</a>
+        <Link href={content === "profile" ? "/profile/dog" : "/marketplace"}>
+          {content}
+        </Link>
       </div>
     </div>
   );
