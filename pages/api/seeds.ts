@@ -58,6 +58,7 @@ export default async function handler(
         title: post.title,
         content: post.content,
         author: { connect: { id: author.id } },
+        price: "MEDIUM",
         images: [
           "https://www.lego.com/cdn/cs/set/assets/blt98ab23663c973e9b/42123.jpg?fit=bounds&format=jpg&quality=80&width=1500&height=1500&dpr=1",
         ],

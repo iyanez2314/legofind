@@ -1,15 +1,41 @@
-"use client";
-
-import Image from "next/image";
-import legoman from "/public/Icons/legoman.png";
 import SidebarUserInfo from "../profile/[user]/Components/SidebarUserInfo";
 import MarketPlaceFilter from "./components/MarketPlaceFilter";
 import FilterNav from "../profile/[user]/Components/FilterNav";
 import Header from "../Component/Header";
 import BackgroundImage from "../Component/BackgroundImage";
 import UserProfileCards from "../profile/[user]/Components/UserProfileCards";
+import { Price, PrismaClient } from "@prisma/client";
 
-export default function MarketplaceHome() {
+const prisma = new PrismaClient();
+
+export interface PostCardType {
+  images: string[];
+  title: string;
+  content: string;
+  price: Price;
+}
+
+const fetchPostData = async (): Promise<
+  {
+    images: string[];
+    title: string;
+    content: string;
+    price: Price;
+  }[]
+> => {
+  const data = await prisma.post.findMany({
+    select: {
+      images: true,
+      title: true,
+      content: true,
+      price: true,
+    },
+  });
+  return data;
+};
+
+export default async function MarketplaceHome() {
+  const posts = await fetchPostData();
   return (
     <div className="bg-white min-h-screen h-full">
       <Header />
@@ -26,11 +52,9 @@ export default function MarketplaceHome() {
         <div className=" z-50 w-full ">
           <FilterNav page={true} />
           <div className="flex flex-wrap w-full">
-            {Array(8)
-              .fill(0)
-              .map((_, i) => (
-                <UserProfileCards key={i} />
-              ))}
+            {posts.map((post, i) => (
+              <UserProfileCards key={i} post={post} />
+            ))}
           </div>
         </div>
       </div>
