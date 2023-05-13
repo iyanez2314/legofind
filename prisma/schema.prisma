@@ -27,6 +27,8 @@ model Post {
   title     String
   content   String
   price     Price
+  isSold    Boolean  @default(false)
+  condition String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   author    User     @relation(fields: [authorId], references: [id])

@@ -15,6 +15,8 @@ export interface Inputs {
   content: string;
   images: string[];
   price: string;
+  isSold: boolean;
+  condition: string;
 }
 
 const style = {
@@ -39,7 +41,21 @@ export default function MarketPlaceModal({
     content: "",
     images: [],
     price: "",
+    isSold: false,
+    condition: "",
   });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setInputs((inputs) => ({ ...inputs, [name]: value }));
+  };
+
+  const handleTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setInputs((inputs) => ({ ...inputs, [name]: value }));
+  };
+
+  const createNewPost = async () => {};
 
   // Handle the state of the modal being open or closed
   const [open, setOpen] = useState(false);
@@ -62,7 +78,12 @@ export default function MarketPlaceModal({
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <MarketPlaceModalInput handleClose={handleClose} inputs={inputs} />
+          <MarketPlaceModalInput
+            handleClose={handleClose}
+            inputs={inputs}
+            handleInputChange={handleInputChange}
+            handleTextArea={handleTextArea}
+          />
         </Box>
       </Modal>
     </div>

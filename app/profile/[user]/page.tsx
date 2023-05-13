@@ -11,7 +11,7 @@ const prisma = new PrismaClient();
 const fetchUserData = async (): Promise<Post[]> => {
   const data = await prisma.post.findMany({
     where: {
-      authorId: "d9517874-66b6-49e8-a4ce-148e33fe1cfc",
+      authorId: "77f66442-3d78-435a-a4c5-a18672b82c32",
     },
   });
   return data;

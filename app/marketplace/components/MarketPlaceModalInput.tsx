@@ -4,10 +4,17 @@ import { Inputs } from "./MarketPlaceModal";
 
 interface Props {
   handleClose: () => void;
+  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleTextArea: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   inputs: Inputs;
 }
 
-export default function MarketPlaceModalInput({ handleClose, inputs }: Props) {
+export default function MarketPlaceModalInput({
+  handleClose,
+  inputs,
+  handleInputChange,
+  handleTextArea,
+}: Props) {
   return (
     <form>
       <div className="space-y-12 overflow-auto max-h-screen">
@@ -31,6 +38,7 @@ export default function MarketPlaceModalInput({ handleClose, inputs }: Props) {
               <div className="mt-2">
                 <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                   <input
+                    onChange={handleInputChange}
                     type="text"
                     name="title"
                     id="title"
@@ -51,8 +59,9 @@ export default function MarketPlaceModalInput({ handleClose, inputs }: Props) {
               </label>
               <div className="mt-2">
                 <textarea
-                  id="description"
-                  name="description"
+                  onChange={handleTextArea}
+                  id="content"
+                  name="content"
                   value={inputs.content}
                   rows={3}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -114,15 +123,17 @@ export default function MarketPlaceModalInput({ handleClose, inputs }: Props) {
                 <div className="relative flex gap-x-3">
                   <div className="flex h-6 items-center">
                     <input
-                      id="comments"
-                      name="comments"
-                      type="checkbox"
+                      id="fullyBuilt"
+                      name="condition"
+                      type="radio"
+                      value="fullybuilt"
+                      onChange={handleInputChange}
                       className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     />
                   </div>
                   <div className="text-sm leading-6">
                     <label
-                      htmlFor="comments"
+                      htmlFor="fullybuilt"
                       className="font-medium text-gray-900"
                     >
                       Fully Built
@@ -135,15 +146,17 @@ export default function MarketPlaceModalInput({ handleClose, inputs }: Props) {
                 <div className="relative flex gap-x-3">
                   <div className="flex h-6 items-center">
                     <input
-                      id="candidates"
-                      name="candidates"
-                      type="checkbox"
+                      id="sealed"
+                      name="condition"
+                      type="radio"
+                      value="sealed"
+                      onChange={handleInputChange}
                       className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     />
                   </div>
                   <div className="text-sm leading-6">
                     <label
-                      htmlFor="candidates"
+                      htmlFor="sealed"
                       className="font-medium text-gray-900"
                     >
                       In Box Sealed
@@ -156,15 +169,17 @@ export default function MarketPlaceModalInput({ handleClose, inputs }: Props) {
                 <div className="relative flex gap-x-3">
                   <div className="flex h-6 items-center">
                     <input
-                      id="offers"
-                      name="offers"
-                      type="checkbox"
+                      id="openBox"
+                      name="condition"
+                      type="radio"
+                      value="openBox"
+                      onChange={handleInputChange}
                       className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     />
                   </div>
                   <div className="text-sm leading-6">
                     <label
-                      htmlFor="offers"
+                      htmlFor="openBox"
                       className="font-medium text-gray-900"
                     >
                       Open Box
