@@ -6,6 +6,7 @@ interface Props {
   handleClose: () => void;
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleTextArea: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  createNewPost: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
   inputs: Inputs;
 }
 
@@ -14,9 +15,10 @@ export default function MarketPlaceModalInput({
   inputs,
   handleInputChange,
   handleTextArea,
+  createNewPost,
 }: Props) {
   return (
-    <form>
+    <form onSubmit={createNewPost}>
       <div className="space-y-12 overflow-auto max-h-screen">
         <div className="border-b border-gray-900/10 pb-12">
           <h2 className="text-base font-semibold leading-7 text-gray-900">
@@ -45,6 +47,27 @@ export default function MarketPlaceModalInput({
                     value={inputs.title}
                     className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                     placeholder="Star wars lego set"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="sm:col-span-4">
+              <label
+                htmlFor="price"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Price
+              </label>
+              <div className="mt-2">
+                <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                  <input
+                    onChange={handleInputChange}
+                    type="text"
+                    name="price"
+                    id="price"
+                    value={inputs.price}
+                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    placeholder="$100"
                   />
                 </div>
               </div>

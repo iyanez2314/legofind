@@ -30,6 +30,7 @@ const style = {
   p: 4,
 };
 
+// Component for the modal
 export default function MarketPlaceModal({
   isMarketPlace,
 }: {
@@ -48,6 +49,7 @@ export default function MarketPlaceModal({
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setInputs((inputs) => ({ ...inputs, [name]: value }));
+    console.log(value);
   };
 
   const handleTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -55,7 +57,19 @@ export default function MarketPlaceModal({
     setInputs((inputs) => ({ ...inputs, [name]: value }));
   };
 
-  const createNewPost = async () => {};
+  const createNewPost = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const res = await fetch("/api/marketplace/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(inputs),
+    });
+
+    const { post } = await res.json();
+    console.log(post);
+  };
 
   // Handle the state of the modal being open or closed
   const [open, setOpen] = useState(false);
@@ -83,6 +97,7 @@ export default function MarketPlaceModal({
             inputs={inputs}
             handleInputChange={handleInputChange}
             handleTextArea={handleTextArea}
+            createNewPost={createNewPost}
           />
         </Box>
       </Modal>
