@@ -7,6 +7,8 @@ interface Props {
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleTextArea: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   createNewPost: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
+  handleFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  loading: boolean;
   inputs: Inputs;
 }
 
@@ -16,6 +18,8 @@ export default function MarketPlaceModalInput({
   handleInputChange,
   handleTextArea,
   createNewPost,
+  handleFileChange,
+  loading,
 }: Props) {
   return (
     <form onSubmit={createNewPost}>
@@ -112,6 +116,7 @@ export default function MarketPlaceModalInput({
                     >
                       <span>Upload a file</span>
                       <input
+                        onChange={handleFileChange}
                         id="file-upload"
                         name="Images"
                         type="file"
@@ -226,9 +231,10 @@ export default function MarketPlaceModalInput({
           </button>
           <button
             type="submit"
+            disabled={loading}
             className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
-            Save
+            {loading ? "Saving..." : "Save"}
           </button>
         </div>
       </div>

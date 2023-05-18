@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useRef } from "react";
 import { useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -17,6 +17,7 @@ export interface Inputs {
   price: string;
   isSold: boolean;
   condition: string;
+  uploadedImage?: File;
 }
 
 const style = {
@@ -46,10 +47,11 @@ export default function MarketPlaceModal({
     condition: "",
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setInputs((inputs) => ({ ...inputs, [name]: value }));
-    console.log(value);
   };
 
   const handleTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -57,18 +59,40 @@ export default function MarketPlaceModal({
     setInputs((inputs) => ({ ...inputs, [name]: value }));
   };
 
+  function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      setInputs((inputs) => ({ ...inputs, uploadedImage: file }));
+    }
+  }
+
   const createNewPost = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    setLoading(true);
+
+    const formData = new FormData();
+    console;
+    formData.append("inputs", JSON.stringify(inputs));
+    formData.append("images", inputs.uploadedImage!);
+
     const res = await fetch("/api/marketplace/create", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(inputs),
+      body: formData,
     });
 
-    const { post } = await res.json();
-    console.log(post);
+    const data = await res.json();
+
+    setTimeout(() => {
+      setLoading(false);
+      handleClose();
+    }, 3000);
+  };
+
+  const fetchAllPosts = async () => {
+    const res = await fetch("/api/marketplace/FetchAllPosts");
+    const data = await res.json();
+    console.log(data);
   };
 
   // Handle the state of the modal being open or closed
@@ -98,6 +122,8 @@ export default function MarketPlaceModal({
             handleInputChange={handleInputChange}
             handleTextArea={handleTextArea}
             createNewPost={createNewPost}
+            handleFileChange={handleFileChange}
+            loading={loading}
           />
         </Box>
       </Modal>

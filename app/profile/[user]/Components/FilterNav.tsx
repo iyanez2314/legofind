@@ -1,8 +1,13 @@
 import React from "react";
 
 import MarketPlaceModal from "@/app/marketplace/components/MarketPlaceModal";
+import { Price } from "@prisma/client";
 
-export default function FilterNav({ page }: { page: boolean }) {
+interface Props {
+  page: boolean;
+}
+
+export default function FilterNav({ page }: Props) {
   return page ? (
     <>
       <div className="p-6 justify-between flex items-center">

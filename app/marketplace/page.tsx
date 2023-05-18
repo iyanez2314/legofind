@@ -15,6 +15,7 @@ export interface PostCardType {
   price: Price;
 }
 
+// TODO: ADD THIS TO STATE MANAGEMENT
 const fetchPostData = async (): Promise<
   {
     images: string[];
