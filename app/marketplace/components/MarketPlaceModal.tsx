@@ -20,6 +20,11 @@ export interface Inputs {
   uploadedImage?: File;
 }
 
+interface Props {
+  isMarketPlace: boolean;
+  setPosts?: React.Dispatch<React.SetStateAction<never[]>>;
+}
+
 const style = {
   position: "absolute" as "absolute",
   top: "50%",
@@ -32,11 +37,7 @@ const style = {
 };
 
 // Component for the modal
-export default function MarketPlaceModal({
-  isMarketPlace,
-}: {
-  isMarketPlace: boolean;
-}) {
+export default function MarketPlaceModal({ isMarketPlace, setPosts }: Props) {
   // Inital state for the lego form
   const [inputs, setInputs] = useState<Inputs>({
     title: "",
@@ -86,14 +87,15 @@ export default function MarketPlaceModal({
     setTimeout(() => {
       setLoading(false);
       handleClose();
+      fetchAllPosts();
     }, 3000);
   };
 
-  const fetchAllPosts = async () => {
+  async function fetchAllPosts() {
     const res = await fetch("/api/marketplace/FetchAllPosts");
     const data = await res.json();
-    console.log(data);
-  };
+    setPosts!(data);
+  }
 
   // Handle the state of the modal being open or closed
   const [open, setOpen] = useState(false);

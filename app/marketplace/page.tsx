@@ -1,3 +1,4 @@
+"use client";
 import SidebarUserInfo from "../profile/[user]/Components/SidebarUserInfo";
 import MarketPlaceFilter from "./components/MarketPlaceFilter";
 import FilterNav from "../profile/[user]/Components/FilterNav";
@@ -5,8 +6,9 @@ import Header from "../Component/Header";
 import BackgroundImage from "../Component/BackgroundImage";
 import UserProfileCards from "../profile/[user]/Components/UserProfileCards";
 import { Price, PrismaClient } from "@prisma/client";
+import React, { useState, useEffect } from "react";
 
-const prisma = new PrismaClient();
+// const prisma = new PrismaClient();
 
 export interface PostCardType {
   images: string[];
@@ -15,28 +17,19 @@ export interface PostCardType {
   price: Price;
 }
 
-// TODO: ADD THIS TO STATE MANAGEMENT
-const fetchPostData = async (): Promise<
-  {
-    images: string[];
-    title: string;
-    content: string;
-    price: Price;
-  }[]
-> => {
-  const data = await prisma.post.findMany({
-    select: {
-      images: true,
-      title: true,
-      content: true,
-      price: true,
-    },
-  });
-  return data;
-};
+export default function MarketplaceHome() {
+  const [posts, setPosts] = useState([]);
 
-export default async function MarketplaceHome() {
-  const posts = await fetchPostData();
+  const fetchPostsData = async () => {
+    const res = await fetch("/api/marketplace/FetchAllPosts");
+    const data = await res.json();
+    setPosts(data);
+  };
+
+  useEffect(() => {
+    fetchPostsData();
+  }, []);
+
   return (
     <div className="bg-white min-h-screen h-full">
       <Header />
@@ -51,7 +44,7 @@ export default async function MarketplaceHome() {
           </div>
         </div>
         <div className=" z-50 w-full ">
-          <FilterNav page={true} />
+          <FilterNav page={true} setPosts={setPosts} />
           <div className="flex flex-wrap w-full">
             {posts.map((post, i) => (
               <UserProfileCards key={i} post={post} />
