@@ -10,7 +10,7 @@ export default function UserProfileCards({ post }: Props) {
   return (
     <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-6 py-4 cursor-pointer">
       <div className="bg-white shadow-lg rounded-lg">
-        <div className="relative w-full aspect-w-3 aspect-h-2 mb-4">
+        <div className="relative w-full aspect-w-3 aspect-h-2 mb-4 h-[200px]">
           <Image
             unoptimized={true}
             height={200}

@@ -5,10 +5,9 @@ import { Price } from "@prisma/client";
 
 interface Props {
   page: boolean;
-  setPosts?: React.Dispatch<React.SetStateAction<never[]>>;
 }
 
-export default function FilterNav({ page, setPosts }: Props) {
+export default function FilterNav({ page }: Props) {
   return page ? (
     <>
       <div className="p-6 justify-between flex items-center">
@@ -16,7 +15,7 @@ export default function FilterNav({ page, setPosts }: Props) {
           <h1 className="text-xl font-semibold">Marketplace</h1>
         </div>
         <div>
-          <MarketPlaceModal isMarketPlace={true} setPosts={setPosts} />
+          <MarketPlaceModal isMarketPlace={true} />
         </div>
       </div>
     </>
@@ -25,7 +24,7 @@ export default function FilterNav({ page, setPosts }: Props) {
       <div className="flex flex-start">
         <h1 className="text-xl font-semibold">Isaac's Legos</h1>
       </div>
-      <MarketPlaceModal isMarketPlace={false} setPosts={setPosts} />
+      <MarketPlaceModal isMarketPlace={false} />
     </div>
   );
 }
