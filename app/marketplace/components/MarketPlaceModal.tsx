@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useRef, useContext } from "react";
 import { useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -9,6 +9,7 @@ import Image from "next/image";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import MarketPlaceModalInput from "./MarketPlaceModalInput";
+import { PostsContext } from "@/app/context/PostsContext";
 
 export interface Inputs {
   title: string;
@@ -22,7 +23,6 @@ export interface Inputs {
 
 interface Props {
   isMarketPlace: boolean;
-  setPosts?: React.Dispatch<React.SetStateAction<never[]>>;
 }
 
 const style = {
@@ -37,7 +37,9 @@ const style = {
 };
 
 // Component for the modal
-export default function MarketPlaceModal({ isMarketPlace, setPosts }: Props) {
+export default function MarketPlaceModal({ isMarketPlace }: Props) {
+  const { setPosts } = useContext(PostsContext);
+
   // Inital state for the lego form
   const [inputs, setInputs] = useState<Inputs>({
     title: "",
@@ -94,7 +96,7 @@ export default function MarketPlaceModal({ isMarketPlace, setPosts }: Props) {
   async function fetchAllPosts() {
     const res = await fetch("/api/marketplace/FetchAllPosts");
     const data = await res.json();
-    setPosts!(data);
+    setPosts(data);
   }
 
   // Handle the state of the modal being open or closed

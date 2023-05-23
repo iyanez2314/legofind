@@ -16,8 +16,6 @@ export interface PostCardType {
 
 export default function MarketplaceHome() {
   const { posts } = useContext(PostsContext);
-  console.log("here", posts);
-
   return (
     <div className="bg-white min-h-screen h-full">
       <div>
