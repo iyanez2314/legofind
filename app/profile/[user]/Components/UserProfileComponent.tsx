@@ -16,7 +16,7 @@ export default function UserProfileComponent() {
       <div className="flex mt-[100px]">
         <SidebarNav />
         <div className="w-full ">
-          <FilterNav page={false} />
+          <FilterNav />
           <div className="flex flex-wrap w-full">
             {userPosts.map((post, i) => (
               <UserProfileCards key={post.id} post={post} />

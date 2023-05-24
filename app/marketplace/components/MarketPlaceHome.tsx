@@ -1,7 +1,5 @@
 "use client";
-import SidebarUserInfo from "../../profile/[user]/Components/SidebarUserInfo";
-import MarketPlaceFilter from "../components/MarketPlaceFilter";
-import FilterNav from "../../profile/[user]/Components/FilterNav";
+import FilterNav from "../components/FilterNav";
 import { Price, PrismaClient } from "@prisma/client";
 import React, { useContext } from "react";
 import { PostsContext } from "../../context/PostsContext";
@@ -20,7 +18,7 @@ export default function MarketplaceHome() {
     <div className="bg-white min-h-screen h-full">
       <div>
         <div className=" z-50 w-full ">
-          <FilterNav page={true} />
+          <FilterNav />
           <div className="flex flex-wrap w-full">
             {posts.map((post, i) => (
               <UserProfileCards key={i} post={post} />

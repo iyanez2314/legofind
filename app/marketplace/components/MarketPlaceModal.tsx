@@ -6,8 +6,6 @@ import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import PlusSign from "/public/Icons/plus-sign.png";
 import Image from "next/image";
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import MarketPlaceModalInput from "./MarketPlaceModalInput";
 import { PostsContext } from "@/app/context/PostsContext";
 
@@ -19,10 +17,6 @@ export interface Inputs {
   isSold: boolean;
   condition: string;
   uploadedImage?: File;
-}
-
-interface Props {
-  isMarketPlace: boolean;
 }
 
 const style = {
@@ -37,7 +31,7 @@ const style = {
 };
 
 // Component for the modal
-export default function MarketPlaceModal({ isMarketPlace }: Props) {
+export default function MarketPlaceModal() {
   const { setPosts } = useContext(PostsContext);
 
   // Inital state for the lego form
@@ -103,7 +97,7 @@ export default function MarketPlaceModal({ isMarketPlace }: Props) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  return isMarketPlace ? (
+  return (
     <div>
       <Button
         onClick={handleOpen}
@@ -132,12 +126,5 @@ export default function MarketPlaceModal({ isMarketPlace }: Props) {
         </Box>
       </Modal>
     </div>
-  ) : (
-    <>
-      <ToggleButtonGroup color="primary" exclusive aria-label="Platform">
-        <ToggleButton value="web">Forsale</ToggleButton>
-        <ToggleButton value="android">Sold</ToggleButton>
-      </ToggleButtonGroup>
-    </>
   );
 }
