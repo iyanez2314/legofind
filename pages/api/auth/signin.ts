@@ -2,8 +2,6 @@ import { NextApiRequest, NextApiResponse } from "next";
 import validator from "validator";
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
-import * as jose from "jose";
-import { setCookie } from "cookies-next";
 
 const prisma = new PrismaClient();
 
@@ -12,15 +10,10 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "POST") {
-    const { username, email, password } = req.body;
-
+    const { email, password } = req.body;
     const errors: string[] = [];
 
     const validatorSchema = [
-      {
-        valid: validator.isLength(username, { min: 3, max: 20 }),
-        errorMessage: "Username must be between 3 and 20 characters",
-      },
       {
         valid: validator.isEmail(email),
         errorMessage: "Email is not valid",
@@ -47,23 +40,16 @@ export default async function handler(
       },
     });
 
-    if (user) {
-      return res.status(400).json({ errorMessage: "Email already exists" });
+    if (!user) {
+      return res.status(400).json({ errorMessage: "Email does not exist" });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const passwordMatch = await bcrypt.compare(password, user.password);
 
-    const newUser = await prisma.user.create({
-      data: {
-        username: username,
-        email: email,
-        password: hashedPassword,
-      },
-    });
+    if (!passwordMatch) {
+      return res.status(400).json({ errorMessage: "Password is incorrect" });
+    }
 
-    return res.status(200).json({
-      username: newUser.username,
-      email: newUser.email,
-    });
+    return res.status(200).json({ successMessage: "Logged in successfully" });
   }
 }
