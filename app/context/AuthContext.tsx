@@ -38,10 +38,12 @@ export default function AuthContext({
   });
 
   const fetchUserData = async () => {
+    console.log("Here");
     console.log("called in fetchUserData");
     setAuthState({ data: null, error: null, loading: true });
     try {
       const jwt = getCookie("jwt");
+      console.log("jwt in AuthContext => ", jwt);
       if (!jwt) {
         return setAuthState({ data: null, error: null, loading: false });
       }

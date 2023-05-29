@@ -9,6 +9,7 @@ import { UserContext } from "@/app/context/UserContext";
 
 export default function UserProfileComponent() {
   const { userPosts } = useContext(UserContext);
+
   return (
     <div className="bg-white min-h-screen h-full">
       <Header />
