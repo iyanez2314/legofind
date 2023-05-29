@@ -61,6 +61,22 @@ export default async function handler(
       },
     });
 
+    const alg = "HS256";
+    const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+
+    const token = await new jose.SignJWT({ email: newUser.email })
+      .setProtectedHeader({ alg })
+      .setExpirationTime("2h")
+      .sign(secret);
+
+    setCookie("jwt", token, {
+      req,
+      res,
+      maxAge: 7200,
+      secure: true,
+      httpOnly: true,
+    });
+
     return res.status(200).json({
       username: newUser.username,
       email: newUser.email,

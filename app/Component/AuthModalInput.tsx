@@ -1,6 +1,7 @@
 import React from "react";
 import legoman from "/public/Icons/legoman.png";
 import Image from "next/image";
+import { data } from "autoprefixer";
 
 interface Props {
   inputs: {
@@ -10,9 +11,20 @@ interface Props {
     password: string;
   };
   isSignin: boolean;
+  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSignUp: () => void;
+  handleSignIn: () => void;
+  data: any;
 }
 
-export default function AuthModalInput({ inputs, isSignin }: Props) {
+export default function AuthModalInput({
+  inputs,
+  isSignin,
+  handleInputChange,
+  handleSignUp,
+  handleSignIn,
+  data,
+}: Props) {
   return (
     <div>
       {isSignin ? (
@@ -28,7 +40,7 @@ export default function AuthModalInput({ inputs, isSignin }: Props) {
                 alt="Lego man logo"
               />
               <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-                Welcome back!
+                Welcome back! {data ? `${data.username}` : "no data"}
               </h2>
             </div>
 
@@ -43,6 +55,7 @@ export default function AuthModalInput({ inputs, isSignin }: Props) {
                   </label>
                   <div className="mt-2">
                     <input
+                      onChange={handleInputChange}
                       id="email"
                       name="email"
                       type="email"
@@ -72,6 +85,7 @@ export default function AuthModalInput({ inputs, isSignin }: Props) {
                   </div>
                   <div className="mt-2">
                     <input
+                      onChange={handleInputChange}
                       id="password"
                       name="password"
                       type="password"
@@ -84,6 +98,7 @@ export default function AuthModalInput({ inputs, isSignin }: Props) {
 
                 <div>
                   <button
+                    onClick={handleSignIn}
                     type="submit"
                     className="flex w-full justify-center rounded-md bg-yellow-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-yellow-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-700 transition-all duration-150 ease-in-out"
                   >
@@ -132,6 +147,7 @@ export default function AuthModalInput({ inputs, isSignin }: Props) {
                   </label>
                   <div className="mt-2">
                     <input
+                      onChange={handleInputChange}
                       placeholder="Username"
                       id="username"
                       name="username"
@@ -151,6 +167,7 @@ export default function AuthModalInput({ inputs, isSignin }: Props) {
                   </label>
                   <div className="mt-2">
                     <input
+                      onChange={handleInputChange}
                       placeholder="legobuilder@email.com"
                       id="email"
                       name="email"
@@ -174,6 +191,7 @@ export default function AuthModalInput({ inputs, isSignin }: Props) {
                   </div>
                   <div className="mt-2">
                     <input
+                      onChange={handleInputChange}
                       placeholder="Must be at least 8 characters"
                       id="password"
                       name="password"
@@ -184,9 +202,9 @@ export default function AuthModalInput({ inputs, isSignin }: Props) {
                     />
                   </div>
                 </div>
-
                 <div>
                   <button
+                    onClick={handleSignUp}
                     type="submit"
                     className="flex w-full justify-center rounded-md bg-yellow-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-yellow-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-700 transition-all duration-150 ease-in-out"
                   >

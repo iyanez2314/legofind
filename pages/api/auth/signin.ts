@@ -2,6 +2,8 @@ import { NextApiRequest, NextApiResponse } from "next";
 import validator from "validator";
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
+import * as jose from "jose";
+import { setCookie } from "cookies-next";
 
 const prisma = new PrismaClient();
 
@@ -10,6 +12,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "POST") {
+    console.log("request made to signin api");
     const { email, password } = req.body;
     const errors: string[] = [];
 
@@ -41,7 +44,7 @@ export default async function handler(
     });
 
     if (!user) {
-      return res.status(400).json({ errorMessage: "Email does not exist" });
+      return res.status(401).json({ errorMessage: "Email does not exist" });
     }
 
     const passwordMatch = await bcrypt.compare(password, user.password);
@@ -50,6 +53,26 @@ export default async function handler(
       return res.status(400).json({ errorMessage: "Password is incorrect" });
     }
 
-    return res.status(200).json({ successMessage: "Logged in successfully" });
+    const alg = "HS256";
+    const seceret = new TextEncoder().encode(process.env.JWT_SECRET);
+
+    const token = await new jose.SignJWT({ email: user.email })
+      .setProtectedHeader({ alg })
+      .setExpirationTime("2h")
+      .sign(seceret);
+
+    setCookie("jwt", token, {
+      req,
+      res,
+      maxAge: 7200,
+      secure: true,
+      httpOnly: true,
+    });
+
+    return res.status(200).json({
+      username: user.username,
+      email: user.email,
+      id: user.id,
+    });
   }
 }
