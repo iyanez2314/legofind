@@ -6,6 +6,7 @@ import Modal from "@mui/material/Modal";
 import AuthModalInput from "./AuthModalInput";
 import useAuth from "../../hooks/useAuth";
 import { AuthenticationContext } from "../context/AuthContext";
+import Link from "next/link";
 
 const style = {
   position: "absolute" as "absolute",
@@ -51,6 +52,7 @@ export default function AuthModal({ isSignin }: { isSignin: boolean }) {
 
   return (
     <div>
+      <Link href={"/profile/dog"}> {data ? "Profile" : ""} </Link>
       <Button
         onClick={handleOpen}
         className={

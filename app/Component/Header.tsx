@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthenticationContext } from "../context/AuthContext";
 import NavBar from "./NavBar";
 
 export default function Header() {
   return (
     <header className="absolute inset-x-0 top-0 z-40">
       <NavBar />
-
-      <div className="lg:hidden" role="dialog" aria-modal="true">
+      {/* <div className="lg:hidden" role="dialog" aria-modal="true">
         <div className="fixed inset-0 z-40"></div>
         <div className="fixed inset-y-0 right-0 z-40 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
@@ -73,7 +73,7 @@ export default function Header() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </header>
   );
 }

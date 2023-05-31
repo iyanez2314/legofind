@@ -1,9 +1,14 @@
-import React from "react";
+"use client";
+import React, { useContext } from "react";
 import Image from "next/image";
 import legoman from "/public/Icons/legoman.png";
 import AuthModal from "./AuthModal";
+import { AuthenticationContext } from "../context/AuthContext";
+import Link from "next/link";
 
 export default function NavBar() {
+  const { data } = useContext(AuthenticationContext);
+
   return (
     <nav
       className="flex items-center justify-between p-6 lg:px-8"
@@ -38,7 +43,15 @@ export default function NavBar() {
         </button>
       </div>
       <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-        <AuthModal isSignin={true} /> <span aria-hidden="true">&rarr;</span>
+        {data ? (
+          <>
+            <Link href={`/profile/${data.username}`}>Profile</Link>
+          </>
+        ) : (
+          <>
+            <AuthModal isSignin={true} /> <span aria-hidden="true">&rarr;</span>
+          </>
+        )}
       </div>
     </nav>
   );

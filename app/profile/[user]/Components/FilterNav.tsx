@@ -11,7 +11,7 @@ export default function FilterNav() {
       <div className="p-6 justify-between flex items-center">
         <div className="flex flex-start">
           <h1 className="text-xl font-semibold">
-            {data ? data.username : "User"}
+            {data ? `${data.username} Lego Sets` : "User"}
           </h1>
         </div>
         <div>

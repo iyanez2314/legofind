@@ -6,9 +6,15 @@ import SidebarNav from "../Components/SidebarNav";
 import FilterNav from "../Components/FilterNav";
 import UserProfileCards from "../Components/UserProfileCards";
 import { UserContext } from "@/app/context/UserContext";
+import { Post } from "@prisma/client";
 
-export default function UserProfileComponent() {
-  const { userPosts } = useContext(UserContext);
+interface Props {
+  usersPosts: Promise<Post[]>;
+}
+
+export default function UserProfileComponent({ usersPosts }: Props) {
+  // const { userPosts } = useContext(UserContext);
+  console.log(usersPosts);
 
   return (
     <div className="bg-white min-h-screen h-full">
@@ -19,7 +25,7 @@ export default function UserProfileComponent() {
         <div className="w-full ">
           <FilterNav />
           <div className="flex flex-wrap w-full">
-            {userPosts.map((post, i) => (
+            {usersPosts.map((post, i) => (
               <UserProfileCards key={post.id} post={post} />
             ))}
           </div>

@@ -69,6 +69,8 @@ export default async function handler(
       httpOnly: true,
     });
 
+    console.log("here in signin =>", token);
+
     return res.status(200).json({
       username: user.username,
       email: user.email,

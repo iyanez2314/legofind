@@ -4,15 +4,8 @@ import HomePageContent from "./Component/HomePageContent";
 import NavBar from "./Component/NavBar";
 import AuthContext from "./context/AuthContext";
 import PostsProvider from "./context/PostsContext";
+import RootLayout from "./layout";
 
 export default function Home() {
-  return (
-    <AuthContext>
-      <div className="bg-white h-screen">
-        <Header />
-        <BackgroundImage />
-        <HomePageContent />
-      </div>
-    </AuthContext>
-  );
+  return <HomePageContent />;
 }
